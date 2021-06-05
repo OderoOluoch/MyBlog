@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static spark.Spark.get;
+import static spark.Spark.*;
 import static spark.Spark.staticFileLocation;
 
 public class App {
@@ -20,7 +20,7 @@ public class App {
         return new ModelAndView(model,"index.hbs");
     }, new HandlebarsTemplateEngine());
 
-    get("/posts/new",(request, response) -> {
+    post("/posts/new",(request, response) -> {
        Map<String , Object> model = new HashMap<String, Object>();
        String content = request.queryParams("content");
        Post newPost = new Post(content);
