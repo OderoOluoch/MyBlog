@@ -5,18 +5,15 @@ import java.util.ArrayList;
 public class Post {
     private String content;
     private static ArrayList<Post> mInstances = new ArrayList<>();
-
+    private boolean published;
     public Post(String content){
         this.content = content;
+        this.published = false;
         this.mInstances.add(this);
     }
 
     public String getContent() {
         return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 
     public static ArrayList<Post> getAll(){
@@ -25,5 +22,8 @@ public class Post {
 
     public static void cleaAllPosts(){
         mInstances.clear();
+    }
+    public boolean getPublished(){
+        return this.published;
     }
 }
