@@ -26,7 +26,7 @@ public class Post {
         return mInstances;
     }
 
-    public static void cleaAllPosts(){
+    public static void clearAllPosts(){
         mInstances.clear();
     }
     public boolean getPublished(){
@@ -42,4 +42,11 @@ public class Post {
      public static Post findById(int id){
         return mInstances.get(id-1);
      }
+
+    public void update(String content) {
+        this.content = content;
+    }
+    public void deletePost(){
+        mInstances.remove(id-1); //same reason
+    }
 }
