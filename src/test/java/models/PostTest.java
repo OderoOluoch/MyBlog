@@ -4,6 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PostTest {
@@ -48,4 +50,41 @@ class PostTest {
         Post myPost = new Post("Day: Intro");
         assertEquals(false,myPost.getPublished());
     }
+
+    @Test
+    public void getCreatedAt_instantiatesWithCurrentTime_today() throws Exception{
+        Post myPost = setUpNewPost();
+        assertEquals(LocalDateTime.now().getDayOfWeek(),myPost.getCreatedAt().getDayOfWeek());
+
+    }
+
+    public Post setUpNewPost(){
+        return new Post("Day 1: Intro");
+    }
+
+    @Test
+    public void getId_postsInstantiateWithAnID_1() throws Exception{
+        Post.cleaAllPosts();
+        Post myPost = new Post("Day 1: Intro");
+        assertEquals(1,myPost.getId());
+    }
+
+    @Test
+    public void findReturnsCorrectPost() throws Exception{
+        Post post = setUpNewPost();
+        assertEquals(1,Post.findById(post.getId()).getId());
+    }
+
+    @Test
+    public void findReturnsCorrectPostWhenMoreThanOnePostExixits() throws Exception{
+        Post post = setUpNewPost();
+        Post otherPost = new Post("How to pair successfully");
+        assertEquals(2,Post.findById(otherPost.getId()).getId());
+    }
+
+
+
+
+
+
 }
